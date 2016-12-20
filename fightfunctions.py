@@ -14,5 +14,7 @@ def attk(play_equip,attacker):
 def calc_damg(hit,attker,attkee):
     hp = attkee.get("HP")
     hp -= hit
+    if hp < 0:
+        hp = 0
     attkee["HP"] = hp
     attker["status"] = 'normal'
