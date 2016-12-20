@@ -3,15 +3,13 @@ from player_stat import *
 from fightfunctions import *
 
 def Fake_Out(who):
-
-    false = "False"
+    who['status']='stun'
     mp = player_cur.get("MP")
     x = random.randint(1,11)
-    print(x)
+    attacker = player_cur
     if x in range(1,5):
         print( "Bad Shot.")
-        spcl = "stun"
-        hit = attk(player_equipment,false)
+        hit = attk(player_equipment,attacker)
         if hit >= 2:
             hit-=2
         else: hit = 0
@@ -20,21 +18,19 @@ def Fake_Out(who):
         print(hit,"Damage.")
     elif x in range(5,11):
         print("It Lands.")
-        spcl="stun"
-        hit = attk(player_equipment,false)
+        hit = attk(player_equipment,attacker)
         hit+=4
         newmp=mp-5
         player_cur["MP"] = newmp 
         print(hit,"Damage.")
     elif x == 11:
         print("Great Shot!")
-        spcl="stun"
-        hit = attk(player_equipment,false)
+        hit = attk(player_equipment,attacker)
         hit=hit*3-2
         newmp=mp-5
         player_cur["MP"] = newmp
         print(hit,"Damage.")
-    return hit,spcl
+    return hit
 
 
 string_2_func={"Fake Out":Fake_Out
@@ -59,6 +55,3 @@ kp2_switch = {
     "1":skill_template.get('s1')
 }
 
-skill_switch={
-    
-    }

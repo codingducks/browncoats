@@ -172,6 +172,8 @@ def player_battle(which_menu):
     pic[1][3] = " "+player_name
     pic[4][1] = " "+"HP "+ str(player_cur.get("HP")) +"/" +str(player_maxhp)
     pic[4][3] = " "+"MP "+ str(player_cur.get("MP")) +"/" +str(player_maxmp)
+    pic[4][4] = "     "
+    pic[4][5] = "Status: "+str(player_cur.get("status")) 
     pic[6][1] = options['arg1']
     pic[8][1] = options['arg2']
     pic[10][1] = options['arg3']

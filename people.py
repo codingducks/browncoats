@@ -3,6 +3,8 @@ from images import *
 key_words = ["bye"]
 
 arlo_speech = {
+"arlo":"Yea?",
+"nakkita":"She Runs A Bar In The South East Area Here Downtown.",
 "default": "Did you see the news?, the ALLIANCE busted a huge counterfiet ID_CARD operation.",
 "alliance":"Are you new? The Alliance run the inner planets, and have major influence on how planets on the rim are run, although the BROWNCOATS dont take much to that.",
 "id card":"Everyones got em, standard issue that is, Alliance issued cards come with some extra perks.",
@@ -40,6 +42,7 @@ def speak(person_bust,person_speech,person_keywords,say="default"):
                 if kw not in key_words:
                     key_words.append(kw)
         say = player_speak()
+        say = say.lower()
 
  
 def player_speak():

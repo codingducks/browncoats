@@ -1,7 +1,8 @@
 from player_battle_menu import *
 from fightfunctions import *
 from player_stat import *
-from arlo import *
+from enemies import *
+from skills import *
 
 def key_pressed(char_width=1):
     import os, sys, tty, termios
@@ -14,14 +15,14 @@ def key_pressed(char_width=1):
         termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
     return ch
 
-def player_turn():
+def player_turn(enemy):
     main = True
     while main == True:
         player_battle("main")
         kp= key_pressed()
         if kp == "1":
-            hit = attk(player_equipment)
-            spcl=None
+            who= enemy
+            hit = attk(player_equipment,who)
             main=False
 
         elif kp =="2":
@@ -35,7 +36,18 @@ def player_turn():
                 elif sp == "9":
                     break
                 else:
-                    pass
+                    who=enemy
+                    if sp in kp2_switch:
+                        skill=kp2_switch[sp]
+                        if skill_mp.get(skill) <= player_cur.get("MP"):
+                            hit= string_2_func[skill](who)
+                            main=False
+                        else:
+                            print("You Don't Have The Energy To Use",skill )
+                            key_pressed()
+                            continue
+                    else:
+                        continue
                 
         elif kp == "3":
             item = True
@@ -62,21 +74,25 @@ def player_turn():
             return hit
                     
 
-def fight():
-
-    while True:
+def fight(enemy):
+    fight = True
+    while fight == True:
         print("\n"*70)
-        arlo_bat(arlo_stat.get("HP"))
-        hit= player_turn()
-        calc_damg(hit,arlo_stat)
+        arlo_bat(enemy.get("HP"))
+        hit= player_turn(enemy)
+        calc_damg(hit,player_cur,enemy)
+        if enemy.get("HP") <=0:
+            fight = False
         key_pressed()
         print("_"*10)
         hit = arlo_turn()
-        calc_damg(hit,player_cur)
+        calc_damg(hit,enemy,player_cur)
+        if player_cur.get("HP") <=0:
+            fight = False
         
         key_pressed()
 
-fight()
+#fight(arlo_stat)
 
 
 

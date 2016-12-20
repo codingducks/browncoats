@@ -2,6 +2,7 @@ import os, sys, tty, termios
 from ariel import *
 from people import *
 from meele import *
+from enemies import *
 
 def key_pressed(char_width=1):
     fd = sys.stdin.fileno()
@@ -74,12 +75,17 @@ def print_action_menu():
     if Talk == True:
         print('''
         1) Talk
-        2) Fight
+        5) Fight
         Anything Else Exits
         ''')
         kp = key_pressed()
         if kp == "1":
             talk(person)
+        elif kp == "5":
+            person = people_cords.get(person)
+            whom = people_fight.get(person)
+            print(whom)
+            fight(whom)
             
 
     elif Talk == False:
@@ -107,6 +113,9 @@ people_cords = {(40,25):"Arlo",
                 (21,26):"Nakkita",
                 (14,11):"alliguard"
                 }
+people_fight={
+    "Arlo":arlo_stat,
+    }
 
 
 bar = 35
