@@ -69,7 +69,8 @@ def player_turn(enemy):
                     else:
                         print("You Have No", item)
         elif kp == "9":
-            break
+            hit=0
+            main=False
         if main == False:
             return hit
                     

@@ -1,10 +1,11 @@
-import os, sys, tty, termios
 from ariel import *
 from people import *
 from meele import *
 from enemies import *
+from player_stat import *
 
 def key_pressed(char_width=1):
+    import os, sys, tty, termios
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
     try:
@@ -28,6 +29,9 @@ def print_board(town_size,message="",newline_amount=1):
 
 def control(current_row,current_col,old_row,old_col,town_size):
     kp = key_pressed()
+    if kp.lower() != kp:
+        print("No Need To Yell!")
+        key_pressed()
     if kp == "j" or kp == "s":
         if current_row <town_size -1:
             if board[current_row + 1][current_col] == empty:
@@ -50,7 +54,23 @@ def control(current_row,current_col,old_row,old_col,town_size):
             
     return current_row,current_col
 
-
+def game_over(cur_party):
+    x=[]
+    for person in cur_party:
+        if person.get("HP") > 0:
+            x.append("alive")
+        else:
+            x.append("dead")
+    if "alive" not in x:
+        gameover = True
+        x.clear()
+        return gameover
+    else:
+        gameover=False
+        x.clear()
+        return gameover
+    
+            
 
 def start_bot(town_size):
     old_row,old_col = 0,0
@@ -59,6 +79,7 @@ def start_bot(town_size):
     return current_row,current_col,old_row,old_col
 
 def print_action_menu():
+    global gameover
     Talk = False
     perimeter = []
     XD = (current_row+1,current_col)
@@ -86,6 +107,7 @@ def print_action_menu():
             whom = people_fight.get(person)
             print(whom)
             fight(whom)
+            gameover = game_over(cur_party)
             
 
     elif Talk == False:
@@ -104,6 +126,7 @@ def talk(person):
 player = "@ "
 empty = ". "
 
+cur_party = [player_cur]
 ariel = 45
 
 ariel_hq = 20
@@ -127,10 +150,13 @@ old_col = 0
 current_row = 44   
 current_col = 20
 
+gameover=False
 
 playing = True
 while playing == True:
-
+    if gameover == True:
+        break
+    
     board = in_ariel(ariel)
     board[old_row][old_col] = empty     
     board[current_row][current_col] = player      
@@ -187,6 +213,17 @@ while playing == True:
 
 
 
+print("\n"*70 ,"""
+___________________________________________
+|                                          |
+|          GAME OVER                       |
+|                                          |
+|                                          |
+|                                          |
+|                                          |
+|                                          |   
+|__________________________________________|
+""")
 
 
 
