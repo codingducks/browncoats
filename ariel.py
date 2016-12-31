@@ -18,6 +18,7 @@ def in_ariel(town_size):
         for y in range(36,44):
             board[x][y] = "  "
   # }
+
   #{ BAR
     for x in range(30,44):
         board[town_size -1][x] = "--"
@@ -40,6 +41,29 @@ def in_ariel(town_size):
     board[town_size-3][30] = "> "
     board[town_size-16][town_size-3] = "V-"
   # }
+
+  #{hose
+    for x in range(1,5):
+        board[0][x] = "--"
+        for y in range(1,5):
+            board[y][x] = "  "
+    for x in range(0,6):
+        board[5][x] = "--"
+    for x in range(0,5): 
+        board[x][0] = "| "
+        board[x][5] = " |"
+    for x in range(2,3):
+        board[5][x] = "^^"
+    
+    
+ 
+#    for x in range(39,40):
+#        board[10][x] = "^^"            
+#    for x in range(1,10):
+#        for y in range(36,44):
+#            board[x][y] = "  "
+  # }
+  
 
     board[40][25] = "@ "#arlo
   
