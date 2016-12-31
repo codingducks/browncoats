@@ -4,34 +4,8 @@ Uncomplete game: Clone At Your Own Dissapointment
 
 
 directional = wasd or hjkl
+
 action button = spacebar
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
