@@ -31,7 +31,7 @@ def player_turn(enemy):
                 print("\n"*70)
                 player_battle("skills")
                 sp = key_pressed()
-                if sp.isdigit()==False:
+                if sp.isdigit()==False or sp == '0':
                     continue
                 elif sp == "9":
                     break
@@ -55,7 +55,7 @@ def player_turn(enemy):
                 print("\n"*70)
                 player_battle("items")
                 ip = key_pressed()
-                if ip.isdigit()==False:
+                if ip.isdigit()==False or ip == '0':
                     continue
                 if ip == "9":
                     break
@@ -71,6 +71,8 @@ def player_turn(enemy):
         elif kp == "9":
             hit=0
             main=False
+        else:
+            continue
         if main == False:
             return hit
                     
