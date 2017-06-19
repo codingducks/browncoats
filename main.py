@@ -3,7 +3,7 @@ from people import *
 from meele import *
 from enemies import *
 from player_stat import *
-from funtions import *
+from functions import *
 
 
 
