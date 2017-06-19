@@ -3,14 +3,7 @@ from fightfunctions import *
 from player_stat import *
 from enemies import *
 from skills import *
-<<<<<<< HEAD
 from functions import *
-=======
-
-
-
-
->>>>>>> da4d64764c07e4863e32d70b96a86c7f09425e55
 
 def player_turn(enemy):
     main = True
